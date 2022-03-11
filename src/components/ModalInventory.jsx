@@ -1,5 +1,7 @@
-import React from "react";
+import Image from "next/image";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../context/context";
 
 export const Container = styled.div`
   position: absolute;
@@ -27,7 +29,30 @@ export const Container = styled.div`
   }
 `;
 
+export const Holder = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(0, 255, 50);
+  }
+`;
+
 const ModalInventory = ({ setModalInventoryVisible, visible }) => {
+  const {
+    myItemsInventory,
+    setMyItemsInventory,
+    itemsTrading,
+    setItemsTrading,
+  } = useContext(AuthContext);
+
   return (
     <Container visible={visible}>
       <span
@@ -37,6 +62,23 @@ const ModalInventory = ({ setModalInventoryVisible, visible }) => {
       >
         X
       </span>
+
+      <Holder>
+        {myItemsInventory.map((item, key) => {
+          return item ? (
+            <Holder
+              key={key}
+              onClick={() => {
+                // console.log(myItemsInventory);
+              }}
+            >
+              <img src={item} alt="item" width={100} height={100} />
+            </Holder>
+          ) : (
+            <></>
+          );
+        })}
+      </Holder>
     </Container>
   );
 };

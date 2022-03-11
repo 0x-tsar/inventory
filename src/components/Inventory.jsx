@@ -1,6 +1,7 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../context/context";
 import Slot from "./Slot";
 
 export const Container = styled.div`
@@ -18,9 +19,29 @@ export const Container = styled.div`
 `;
 
 const Inventory = ({ setModalInventoryVisible }) => {
+  const { itemsTrading } = useContext(AuthContext);
+
   return (
     <Container>
-      <Slot
+      {itemsTrading.map((item, key) => {
+        return item ? (
+          <Slot
+            key={key}
+            position={key}
+            setModalInventoryVisible={setModalInventoryVisible}
+            image={item}
+          ></Slot>
+        ) : (
+          <Slot
+            key={key}
+            position={key}
+            setModalInventoryVisible={setModalInventoryVisible}
+            image={""}
+          ></Slot>
+        );
+      })}
+
+      {/* <Slot
         position={0}
         setModalInventoryVisible={setModalInventoryVisible}
         image={"/items/sword3.png"}
@@ -58,7 +79,7 @@ const Inventory = ({ setModalInventoryVisible }) => {
       <Slot
         position={8}
         setModalInventoryVisible={setModalInventoryVisible}
-      ></Slot>
+      ></Slot> */}
     </Container>
   );
 };
