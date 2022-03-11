@@ -2,9 +2,10 @@ import "../../styles/globals.css";
 import { AuthProvider } from "../context/context";
 import styled from "styled-components";
 import { useState } from "react";
+import Header from "../components/Header";
+import Left from "../components/Left";
 
 export const Container = styled.div`
-  background-color: beige;
   display: grid;
   grid-template-columns: 300px calc(100vw - 300px);
   grid-template-rows: 70px calc(100vh - 70px);
@@ -21,9 +22,10 @@ export const Container = styled.div`
 `;
 
 export const ModalInventory = styled.div`
+  position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 99;
   color: white;
   font-family: monospace, "Courier New", Courier;
@@ -55,6 +57,8 @@ function MyApp({ Component, pageProps }) {
           setModalInventoryVisible={setModalInventoryVisible}
           {...pageProps}
         />
+        <Header></Header>
+        <Left></Left>
         <ModalInventory visible={modalInventoryVisible}>
           <span
             onClick={() => {

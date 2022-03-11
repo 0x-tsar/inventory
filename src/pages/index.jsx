@@ -7,7 +7,8 @@ import Inventory from "../components/Inventory";
 
 export const Container = styled.div`
   grid-area: main;
-  background-color: green;
+  background-color: rgba(0, 0, 50, 1);
+  color: white;
 
   display: flex;
   flex-wrap: wrap;
