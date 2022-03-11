@@ -9,17 +9,26 @@ export const Container = styled.div`
   margin: 5px 5px 5px 5px;
   padding: 10px;
 
+  img {
+    transform: scale(0.9);
+  }
+
   :hover {
     img {
-      transform: scale(1.2);
+      transform: scale(1);
     }
   }
   cursor: pointer;
 `;
 
-const Slot = ({ image }) => {
+const Slot = ({ image, position, setModalInventoryVisible }) => {
   return (
-    <Container>
+    <Container
+      onClick={(e) => {
+        // open modal window inventory
+        setModalInventoryVisible("flex");
+      }}
+    >
       {image ? (
         <Image src={image} width={100} height={100} alt={"item"}></Image>
       ) : (
