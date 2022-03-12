@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../context/context";
 
@@ -51,7 +51,20 @@ const ModalInventory = ({ setModalInventoryVisible, visible }) => {
     setMyItemsInventory,
     itemsTrading,
     setItemsTrading,
+    currentSlot,
+    setCurrentSlot,
   } = useContext(AuthContext);
+
+  const removeItems = (item) => {
+    const newList = myItemsInventory.filter((each) => {
+      return each !== item;
+    });
+
+    setMyItemsInventory(newList);
+    setMyItemsInventory((newList) => [...newList, ""]);
+
+    setItemsTrading((itemsTrading) => [...itemsTrading, item]);
+  };
 
   return (
     <Container visible={visible}>
@@ -63,22 +76,45 @@ const ModalInventory = ({ setModalInventoryVisible, visible }) => {
         X
       </span>
 
-      <Holder>
-        {myItemsInventory.map((item, key) => {
-          return item ? (
-            <Holder
-              key={key}
-              onClick={() => {
-                // console.log(myItemsInventory);
-              }}
-            >
-              <img src={item} alt="item" width={100} height={100} />
-            </Holder>
-          ) : (
-            <></>
-          );
-        })}
-      </Holder>
+      {myItemsInventory.map((item, key) => {
+        return item && item ? (
+          <Holder
+            key={key}
+            onClick={() => {
+              console.log(item);
+
+              removeItems("/items/sword5.png");
+
+              // setItemsTrading(itemsTrading, [
+              //   ...itemsTrading,
+              //   { item: item },
+              // ]);
+
+              //here
+              // setItemsTrading((itemsTrading) => [...itemsTrading, item]);
+              // setMyItemsInventory([]);
+
+              // setMyItemsInventory((myItemsInventory) => [
+              //   ...myItemsInventory,
+              //   {
+              //     item: "",
+              //   },
+              // ]);
+
+              // setItemsTrading(myItemsInventory, [
+              //   ...myItemsInventory,
+              //   { item: "" },
+              // ]);
+
+              setModalInventoryVisible("none");
+            }}
+          >
+            <img src={item} alt="item" width={100} height={100} />
+          </Holder>
+        ) : (
+          <p></p>
+        );
+      })}
     </Container>
   );
 };

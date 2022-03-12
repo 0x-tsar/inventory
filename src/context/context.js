@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
   ]);
 
   const [data, setData] = useState("context working");
+  const [currentSlot, setCurrentSlot] = useState(0);
 
   return (
     <AuthContext.Provider
@@ -37,6 +38,8 @@ export const AuthProvider = ({ children }) => {
         setMyItemsInventory,
         itemsTrading,
         setItemsTrading,
+        currentSlot,
+        setCurrentSlot,
       }}
     >
       {children}

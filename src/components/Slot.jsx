@@ -40,6 +40,8 @@ const Slot = ({ image, position, setModalInventoryVisible }) => {
     setItemsTrading,
     myItemsInventory,
     setMyItemsInventory,
+    currentSlot,
+    setCurrentSlot,
   } = useContext(AuthContext);
 
   // function handleRemove(id) {
@@ -51,7 +53,7 @@ const Slot = ({ image, position, setModalInventoryVisible }) => {
     <Container
       onClick={(e) => {
         setModalInventoryVisible("flex");
-
+        setCurrentSlot(position);
         // setMyItemsInventory(myItemsInventory[position], "");
         // setItemsTrading([itemsTrading[position], ""]);
         // itemsTrading[position] = "";

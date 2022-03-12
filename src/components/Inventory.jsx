@@ -19,7 +19,7 @@ export const Container = styled.div`
 `;
 
 const Inventory = ({ setModalInventoryVisible }) => {
-  const { itemsTrading } = useContext(AuthContext);
+  const { itemsTrading, currentSlot, setCurrentSlot } = useContext(AuthContext);
 
   return (
     <Container>

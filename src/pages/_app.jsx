@@ -43,7 +43,6 @@ function MyApp({ Component, pageProps }) {
   );
 
   function setModalInventoryVisible() {
-    console.log("called");
     if (modalInventoryVisible === "none") {
       setModalVisible("flex");
     } else {
