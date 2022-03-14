@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../context/context";
 
@@ -46,6 +46,8 @@ export const Holder = styled.div`
 `;
 
 const ModalInventory = ({ setModalInventoryVisible, visible }) => {
+  const [getPosition, setPosition] = useState(0);
+
   const {
     myItemsInventory,
     setMyItemsInventory,
@@ -56,12 +58,24 @@ const ModalInventory = ({ setModalInventoryVisible, visible }) => {
   } = useContext(AuthContext);
 
   const removeItems = (item) => {
-    const newList = myItemsInventory.filter((each) => {
+    const newList = myItemsInventory.filter((each, p) => {
+      if (each === item) {
+        console.log(`position ${p}`);
+        setPosition(p);
+      }
       return each !== item;
     });
 
+    // const newArray = [...newList];
+    newList.splice(getPosition, getPosition, item);
     setMyItemsInventory(newList);
-    setMyItemsInventory((newList) => [...newList, ""]);
+
+    //     const newArray = [...state];
+    // newArray.splice(e.target.id, 0, newElement);
+    // setstate(newArray);
+
+    // setMyItemsInventory(newList);
+    // setMyItemsInventory((newList) => [...newList, ""]);
 
     setItemsTrading((itemsTrading) => [...itemsTrading, item]);
   };

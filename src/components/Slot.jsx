@@ -44,11 +44,6 @@ const Slot = ({ image, position, setModalInventoryVisible }) => {
     setCurrentSlot,
   } = useContext(AuthContext);
 
-  // function handleRemove(id) {
-  //   const newList = list.filter((item) => item.id !== id);
-  //   setList(newList);
-  // }
-
   return (
     <Container
       onClick={(e) => {
